@@ -28,7 +28,7 @@
                         <div class="navbar-nav mr-auto">
                             <a class="nav-item nav-link" href="{% url 'lmsreporting:home' %}">Home</a>
                             <a class="nav-item nav-link" href="{% url 'lmsreporting:about' %}">About</a>
-                            <a class="nav-item nav-link" href="#">Report</a>
+                            <a class="nav-item nav-link" href="{% url 'lmsreporting:report' %}">View Reported Issues</a>
                             <a class="nav-item nav-link" href="{% url 'lmsreporting:contact' %}">Contact</a>
                             <a class="nav-item nav-link" href="{% url 'lmsreporting:modules' %}">Modules</a>
                         </div>
@@ -37,6 +37,7 @@
 
                             {% if user.is_authenticated  %} 
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                                <a class="nav-item nav-link" href="{% url 'lmsreporting:issue-create' %}">Report New Issue</a>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a> 
                         
                             {% else %} 
@@ -48,6 +49,8 @@
                             {% endif %} 
                         
                          </div>
+
+                         
                         
                     </div>
                 </div>
