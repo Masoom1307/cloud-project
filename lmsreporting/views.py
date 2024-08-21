@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Issue
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic.edit import DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
-
+from .models import Module
 # Create your views here.
 def home(request): 
 
@@ -19,9 +19,35 @@ def about(request):
     return render(request, 'lmsreporting/about.html', {'title': 'About'})
 
 
-def contact(request): 
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
+def contact(request):
+    """
+    Renders the contact page with a title in the context.
+    """
     return render(request, 'lmsreporting/contact.html', {'title': 'Contact'})
+
+def contact_submit(request):
+    """
+    Handles form submission from the contact page.
+    If the request method is POST, it processes the form data.
+    """
+    if request.method == 'POST':
+        # Retrieve form data from the POST request
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # Process the form data (e.g., save to the database, send an email)
+        # You can add your logic here to handle the form submission
+        # For example, you might want to send an email or save the message to a model
+
+        # For now, return a simple response acknowledging receipt of the message
+        return HttpResponse("Thank you for your message!")
+
+    # If the request is not a POST, redirect back to the contact page
+    return redirect('contact')
 
 
 def modules(request): 
@@ -33,6 +59,11 @@ def report(request):
    
     daily_report = {'issues': Issue.objects.all(), 'title': 'Issues Reported'}
     return render(request, 'lmsreporting/report.html', daily_report)
+
+
+def modules_view(request):
+    modules = Module.objects.all()
+    return render(request, 'lmsreporting/modules.html', {'modules': modules})
 
 class PostListView(ListView):
     model = Issue

@@ -1,5 +1,25 @@
 {% extends "lmsreporting/base.html" %}
 
+{% load static %}
+
 {% block content %}
-    <h1>Welcome to Student IT Services Home Page</h1>
-{% endblock content %}
+<div class="jumbotron text-center" style="background-image: url('{% static 'images/home_bg.jpg' %}'); background-size: cover; color: white;">
+    <div class="container">
+        <h1 class="display-4">Welcome to Student IT Services</h1>
+        <p class="lead">Your one-stop solution for all IT-related needs and support at the university.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'lmsreporting:modules' %}" role="button">Explore Modules</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Our Mission</h2>
+            <p>We strive to provide the best IT support to students, ensuring they have the resources and tools they need to succeed in their academic endeavors.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/home_mission.jpg' %}" alt="Our Mission" class="img-fluid rounded shadow-sm">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,33 @@
 {% extends "lmsreporting/base.html" %}
 
+{% load static %}
+
 {% block content %}
-    <h1>Welcome to Student IT Services Modules Page</h1>
-{% endblock content %}
+<div class="modules-section text-center" style="background-color: #e9ecef; padding: 50px 0;">
+    <div class="container">
+        <h1 class="display-4">Our Modules</h1>
+        <p class="lead">Explore the various IT support modules available to enhance your learning experience.</p>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        {% for module in modules %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{% static 'images/module_default.jpg' %}" class="card-img-top" alt="{{ module.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ module.title }}</h5>
+                    <p class="card-text">{{ module.description|truncatewords:20 }}</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-muted text-center">No modules available at the moment. Please check back later.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
