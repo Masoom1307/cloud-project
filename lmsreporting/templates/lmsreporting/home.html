@@ -3,23 +3,227 @@
 {% load static %}
 
 {% block content %}
-<div class="jumbotron text-center" style="background-image: url('{% static 'images/home_bg.jpg' %}'); background-size: cover; color: white;">
+<div class="jumbotron">
     <div class="container">
-        <h1 class="display-4">Welcome to Student IT Services</h1>
-        <p class="lead">Your one-stop solution for all IT-related needs and support at the university.</p>
-        <a class="btn btn-primary btn-lg" href="{% url 'lmsreporting:modules' %}" role="button">Explore Modules</a>
+        <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to Student IT Services</h1>
+        <p class="lead animate__animated animate__fadeInUp">Your one-stop solution for all IT-related needs and support at the university.</p>
+        <a class="btn-primary animate__animated animate__zoomIn" href="{% url 'lmsreporting:modules' %}" role="button">Explore Modules</a>
     </div>
 </div>
 
-<div class="container mt-5">
-    <div class="row">
+<div class="container">
+    <div class="row mmm">
         <div class="col-md-6">
-            <h2>Our Mission</h2>
-            <p>We strive to provide the best IT support to students, ensuring they have the resources and tools they need to succeed in their academic endeavors.</p>
+            <h2 class="animate__animated animate__fadeInLeft">Our Mission</h2>
+            <p class="animate__animated animate__fadeInLeft">We strive to provide the best IT support to students, ensuring they have the resources and tools they need to succeed in their academic endeavors.</p>
         </div>
         <div class="col-md-6">
-            <img src="{% static 'images/home_mission.jpg' %}" alt="Our Mission" class="img-fluid rounded shadow-sm">
+            <img src="{% static 'images/home_mission.jpg' %}" alt="Our Mission" class="img-fluid animate__animated animate__fadeInRight">
         </div>
     </div>
 </div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .mmm {
+        display: flex;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    h1, h2, p {
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .display-4 {
+        font-weight: bold;
+        font-size: 3.5rem;
+    }
+
+    .lead {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    /* Jumbotron styling */
+    .jumbotron {
+        background-image: url('{% static 'images/home_bg.jpg' %}');
+        background-size: cover;
+        color: white;
+        padding: 150px 0;
+        position: relative;
+        overflow: hidden;
+        background-position: center;
+        background-attachment: fixed;
+        animation: slideBg 10s infinite alternate;
+        text-align: center;
+    }
+
+    @keyframes slideBg {
+        0% {
+            background-position: center center;
+        }
+        100% {
+            background-position: center bottom;
+        }
+    }
+
+    /* Button styling */
+    .btn-primary {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-5px);
+    }
+
+    /* Image styling */
+    img {
+        width: 100%;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Section spacing */
+    .container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+        .jumbotron {
+            padding: 100px 0;
+        }
+
+        .display-4 {
+            font-size: 2.5rem;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+    }
+
+    /* Animate.css effects */
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    .animate__fadeInDown {
+        animation-name: fadeInDown;
+    }
+
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    .animate__zoomIn {
+        animation-name: zoomIn;
+    }
+
+    .animate__fadeInLeft {
+        animation-name: fadeInLeft;
+    }
+
+    .animate__fadeInRight {
+        animation-name: fadeInRight;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -100%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 100%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale3d(0.3, 0.3, 0.3);
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translate3d(-100%, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translate3d(100%, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+
 {% endblock %}

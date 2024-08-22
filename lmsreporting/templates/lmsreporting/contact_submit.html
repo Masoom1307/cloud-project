@@ -1,16 +1,153 @@
 {% extends "lmsreporting/base.html" %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="text-center">
-            <div class="thank-you-icon mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="currentColor" class="bi bi-check-circle text-success" viewBox="0 0 16 16">
-                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.97 4.03a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 0 1 1.06-1.06L8 8.94l3.97-3.97z"/>
-                </svg>
-            </div>
-            <h1 class="display-4 text-success">Thank You, {{ name }}!</h1>
-            <p class="lead">Your message has been received. We will get back to you shortly.</p>
-            <a href="{% url 'lmsreporting:home' %}" class="btn btn-primary mt-4">Return to Home</a>
+<div class="container mt-5">
+    <div class="text-center">
+        <!-- Thank You Icon -->
+        <div class="thank-you-icon mb-4 animate__animated animate__bounceIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" fill="currentColor" class="bi bi-check-circle text-success" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.97 4.03a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 0 1 1.06-1.06L8 8.94l3.97-3.97z"/>
+            </svg>
         </div>
+
+        <!-- Thank You Message -->
+        <h1 class="display-4 text-success animate__animated animate__fadeInUp">Thank You, {{ name }}!</h1>
+        <p class="lead animate__animated animate__fadeInUp">Your message has been received. We will get back to you shortly.</p>
+
+        <!-- Additional Information -->
+        <div class="mt-5">
+            <h3 class="text-primary animate__animated animate__fadeInUp">What Happens Next?</h3>
+            <p class="text-muted animate__animated animate__fadeInUp">Our team is reviewing your message and will respond within 24 hours. Meanwhile, you can:</p>
+            <ul class="list-group list-group-flush text-left d-inline-block animate__animated animate__fadeInUp">
+                <li class="list-group-item">
+                    <a href="{% url 'lmsreporting:modules' %}" class="text-decoration-none text-primary">Explore our IT Modules</a> and learn about the tools and resources we offer.
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'lmsreporting:report' %}" class="text-decoration-none text-primary">View Reported Issues</a> to stay informed about the latest updates.
+                </li>
+                <li class="list-group-item">
+                    <a href="{% url 'lmsreporting:contact' %}" class="text-decoration-none text-primary">Contact Support</a> if you have any urgent queries.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Return to Home Button -->
+        <a href="{% url 'lmsreporting:home' %}" class="btn btn-primary mt-4 animate__animated animate__zoomIn">Return to Home</a>
     </div>
+</div>
+
+<!-- Custom CSS -->
+<style>
+    .thank-you-icon {
+        color: #28a745;
+        font-size: 4rem;
+    }
+
+    h1.display-4 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .lead {
+        font-size: 1.25rem;
+        color: #6c757d;
+    }
+
+    .list-group-item {
+        background-color: transparent;
+        border: none;
+        font-size: 1.1rem;
+        padding-left: 0;
+    }
+
+    .list-group-item a {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .list-group-item a:hover {
+        text-decoration: underline;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        transform: translateY(-5px);
+    }
+
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    .animate__bounceIn {
+        animation-name: bounceIn;
+    }
+
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    .animate__zoomIn {
+        animation-name: zoomIn;
+    }
+
+    @keyframes bounceIn {
+        0%, 20%, 40%, 60%, 80%, 100% {
+            animation-timing-function: ease-in-out;
+        }
+        0% {
+            opacity: 0;
+            transform: scale3d(.3, .3, .3);
+        }
+        20% {
+            transform: scale3d(1.1, 1.1, 1.1);
+        }
+        40% {
+            transform: scale3d(.9, .9, .9);
+        }
+        60% {
+            opacity: 1;
+            transform: scale3d(1.03, 1.03, 1.03);
+        }
+        80% {
+            transform: scale3d(.97, .97, .97);
+        }
+        100% {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 100%, 0);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale3d(0.3, 0.3, 0.3);
+        }
+        50% {
+            opacity: 1;
+        }
+    }
+</style>
 {% endblock %}

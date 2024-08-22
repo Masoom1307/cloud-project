@@ -1,33 +1,150 @@
 {% extends "lmsreporting/base.html" %}
-
 {% load static %}
 
 {% block content %}
-<div class="modules-section text-center" style="background-color: #e9ecef; padding: 50px 0;">
-    <div class="container">
-        <h1 class="display-4">Our Modules</h1>
-        <p class="lead">Explore the various IT support modules available to enhance your learning experience.</p>
+<div class="custom-modules-section text-center py-5" style="background-color: #f9f9f9;">
+    <div class="custom-container">
+        <h1 class="custom-display-4 font-weight-bold">Our Modules</h1>
+        <p class="custom-lead text-muted">Explore the various IT support modules available to enhance your learning experience.</p>
     </div>
 </div>
 
-<div class="container mt-5">
-    <div class="row">
+<div class="custom-container mt-5">
+    <div class="custom-row">
         {% for module in modules %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img src="{% static 'images/module_default.jpg' %}" class="card-img-top" alt="{{ module.title }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ module.title }}</h5>
-                    <p class="card-text">{{ module.description|truncatewords:20 }}</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+        <div class="custom-col-md-4 mb-4">
+            <div class="custom-card h-100 shadow-sm">
+                <img src="{% static 'images/module_default.jpg' %}" class="custom-card-img-top" alt="{{ module.title }}">
+                <div class="custom-card-body">
+                    <h5 class="custom-card-title">{{ module.title }}</h5>
+                    <p><strong>Code:</strong> {{ module.code }}</p>
+                    <p><strong>Credits:</strong> {{ module.credit }}</p>
+                    <p><strong>Category:</strong> {{ module.category }}</p>
+                    <p><strong>Availability:</strong> {{ module.availability }}</p>
+                    <p class="custom-card-text">{{ module.description|truncatewords:20 }}</p>
+                    <p><strong>Allowed Courses:</strong> 
+                        {% for course in module.allowed_courses.all %}
+                            {{ course.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    {% if request.user in module.registered_students.all %}
+                        <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-secondary">Unregister</a>
+                    {% else %}
+                        <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-primary">Register</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% empty %}
-        <div class="col-12">
-            <p class="text-muted text-center">No modules available at the moment. Please check back later.</p>
+        <div class="custom-col-12">
+            <p class="custom-text-muted custom-text-center">No modules available at the moment. Please check back later.</p>
         </div>
         {% endfor %}
     </div>
 </div>
+
+<style>
+    .custom-modules-section {
+        margin: 30px 0px;
+        -webkit-box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+        background-color: #e9ecef;
+        padding: 50px 0;
+    }
+
+    .custom-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .custom-display-4 {
+        font-size: 2.5rem;
+        color: #343a40;
+    }
+
+    .custom-lead {
+        font-size: 1.25rem;
+        color: #6c757d;
+    }
+
+    .custom-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .custom-col-md-4 {
+        padding: 15px;
+    }
+
+    .custom-card {
+        -webkit-box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+box-shadow: -2px -1px 18px 0px rgba(0,0,0,0.75);
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .custom-card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .custom-card-body {
+        padding: 20px;
+    }
+
+    .custom-card-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .custom-card-text {
+        font-size: 1rem;
+        color: #495057;
+    }
+
+    .custom-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .custom-btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .custom-btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .custom-btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .custom-btn-secondary:hover {
+        background-color: #495057;
+    }
+
+    .custom-text-muted {
+        color: #999;
+    }
+
+    .custom-text-center {
+        text-align: center;
+    }
+</style>
+
 {% endblock %}

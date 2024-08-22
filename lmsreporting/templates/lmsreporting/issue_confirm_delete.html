@@ -2,28 +2,101 @@
 
 {% block content %} 
 
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .content-section {
+        margin: 15vh auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        width: 90%;
+        max-width: 600px;
+        animation: fadeInUp 1s ease-in-out;
+    }
+
+    legend {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #dc3545;
+        text-align: center;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-outline-danger {
+        color: #dc3545;
+        border: 2px solid #dc3545;
+        background-color: transparent;
+        box-shadow: 0px 4px 10px rgba(220, 53, 69, 0.3);
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+        box-shadow: 0px 8px 20px rgba(220, 53, 69, 0.5);
+        transform: translateY(-5px);
+    }
+
+    .btn-outline-secondary {
+        color: #6c757d;
+        border: 2px solid #6c757d;
+        background-color: transparent;
+        box-shadow: 0px 4px 10px rgba(108, 117, 125, 0.3);
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+        box-shadow: 0px 8px 20px rgba(108, 117, 125, 0.5);
+        transform: translateY(-5px);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
 <div class="content-section"> 
-
     <form method="POST"> 
-
         {% csrf_token %} 
-
         <fieldset class="form-group"> 
-
-            <legend class="border-bottom mb-4">Delete IT issue</legend> 
-
-          
+            <legend class="border-bottom mb-4">Delete IT Issue</legend> 
         </fieldset> 
-
         <div class="form-group"> 
-
             <button class="btn btn-outline-danger" type="submit">Delete</button> 
             <a class="btn btn-outline-secondary" href="{% url 'lmsreporting:issue-detail' object.id %}">Cancel</a>
-
         </div> 
-
     </form> 
-
-    </div> 
+</div> 
 
 {% endblock content %} 

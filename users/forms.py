@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
+from lmsreporting.models import Module
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(label='Email address', help_text='Your SHU email address.')

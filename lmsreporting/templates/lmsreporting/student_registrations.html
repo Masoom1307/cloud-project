@@ -1,0 +1,6 @@
+<h1>Your Registrations</h1>
+<ul>
+    {% for registration in registrations %}
+        <li>{{ registration.module.title }} - Registered on {{ registration.date_of_registration }}</li>
+    {% endfor %}
+</ul>

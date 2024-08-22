@@ -1,9 +1,61 @@
+# models.py
+
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.urls import reverse
 
-# Create your models here.
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    date_of_birth = models.DateField()
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='student_photos/', blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
+
+class Module(models.Model):
+    CATEGORY_CHOICES = [
+        ('Core', 'Core'),
+        ('Elective', 'Elective'),
+    ]
+
+    AVAILABILITY_CHOICES = [
+        ('Open', 'Open'),
+        ('Closed', 'Closed'),
+    ]
+
+    registered_students = models.ManyToManyField(Student, related_name='registered_modules', blank=True)
+    title = models.CharField(max_length=100)
+    code = models.CharField(max_length=10, default='TBD')  
+    credit = models.PositiveIntegerField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Core')
+    description = models.TextField()
+    availability = models.CharField(max_length=10, choices=AVAILABILITY_CHOICES, default='Open')
+    allowed_courses = models.ManyToManyField('Course', related_name='modules')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.title} ({self.code})"
+
+class Course(models.Model):
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return f"{self.name} ({self.code})"
+
+class Registration(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    date_of_registration = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"Registration: {self.student.user.username} -> {self.module.title}"
+
+    class Meta:
+        unique_together = ('student', 'module')
 
 class Issue(models.Model):
     type = models.CharField(max_length=100, choices=[('Hardware', 'Hardware'), ('Software', 'Software')])
@@ -14,17 +66,4 @@ class Issue(models.Model):
     description = models.TextField()
     author = models.ForeignKey(User, related_name='issues', on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.type} Issue in {self.room}'
-
-    def get_absolute_url(self):
-        return reverse('lmsreporting:issue-detail', kwargs={'pk': self.pk})
-
-
-class Module(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
+ 

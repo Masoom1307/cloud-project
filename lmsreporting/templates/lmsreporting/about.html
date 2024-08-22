@@ -3,23 +3,318 @@
 {% load static %}
 
 {% block content %}
-<div class="about-section text-center" style="background-color: #f8f9fa; padding: 50px 0;">
+<div class="about-hero-section">
     <div class="container">
-        <h1>About Student IT Services</h1>
-        <p>Empowering students with top-notch IT support and resources.</p>
+        <h1 class="title animate__animated animate__fadeInDown">About Student IT Services</h1>
+        <p class="subtitle animate__animated animate__fadeInUp">Empowering students with top-notch IT support and resources.</p>
     </div>
 </div>
 
-<div class="container mt-5">
-    <div class="row">
+<div class="container about-content mt-5">
+    <div class="row mmm">
         <div class="col-md-6">
-            <img src="{% static 'images/about_us.jpg' %}" alt="About Us" class="img-fluid rounded shadow-sm">
+            <img src="{% static 'images/about_us.jpg' %}" alt="About Us" class="img-fluid animate__animated animate__fadeInLeft">
         </div>
-        <div class="col-md-6">
-            <h2>Our Mission</h2>
-            <p class="text-muted">At Student IT Services, our mission is to provide comprehensive IT support that enhances the academic experience. We strive to ensure that all students have access to the tools and resources they need to succeed in today's digital world.</p>
-            <p class="text-muted">We are committed to innovation, excellence, and service, helping students navigate the complexities of modern technology with confidence.</p>
+        <div class="col-md-6 ccc">
+            <h2 class="section-title animate__animated animate__fadeInRight">Our Mission</h2>
+            <p class="text-muted animate__animated animate__fadeInRight">At Student IT Services, our mission is to provide comprehensive IT support that enhances the academic experience. We strive to ensure that all students have access to the tools and resources they need to succeed in today's digital world.</p>
+            <p class="text-muted animate__animated animate__fadeInRight">We are committed to innovation, excellence, and service, helping students navigate the complexities of modern technology with confidence.</p>
+        </div>
+    </div>
+
+    <div class="row mt-5 values-section">
+        <div class="col-md-4 text-center">
+            <div class="value-card animate__animated animate__zoomIn">
+                <img src="{% static 'images/innovation.jpg' %}" alt="Innovation" class="value-icon">
+                <h3 class="value-title">Innovation</h3>
+                <p class="text-muted">We embrace cutting-edge technologies to continuously improve our services and provide the best support for students.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="value-card animate__animated animate__zoomIn">
+                <img src="{% static 'images/excellence.jpg' %}" alt="Excellence" class="value-icon">
+                <h3 class="value-title">Excellence</h3>
+                <p class="text-muted">Our team is dedicated to delivering high-quality solutions and support to ensure academic success.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="value-card animate__animated animate__zoomIn">
+                <img src="{% static 'images/service.jpg' %}" alt="Service" class="value-icon">
+                <h3 class="value-title">Service</h3>
+                <p class="text-muted">We prioritize student needs, offering responsive and personalized assistance to help them achieve their goals.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 team-section">
+        <div class="col-md-12">
+            <h2 class="section-title text-center animate__animated animate__fadeInUp">Meet Our Team</h2>
+            <div class="team-cards mt-4">
+                <div class="team-card animate__animated animate__fadeInLeft">
+                    <img src="{% static 'images/team_member1.jpg' %}" alt="Team Member" class="team-photo">
+                    <h3 class="team-name">John Doe</h3>
+                    <p class="team-role text-muted">IT Support Specialist</p>
+                </div>
+                <div class="team-card animate__animated animate__fadeInUp">
+                    <img src="{% static 'images/team_member2.jpg' %}" alt="Team Member" class="team-photo">
+                    <h3 class="team-name">Jane Smith</h3>
+                    <p class="team-role text-muted">Network Administrator</p>
+                </div>
+                <div class="team-card animate__animated animate__fadeInRight">
+                    <img src="{% static 'images/team_member3.jpg' %}" alt="Team Member" class="team-photo">
+                    <h3 class="team-name">Michael Brown</h3>
+                    <p class="team-role text-muted">Software Engineer</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+    .about-hero-section{
+        color: black;
+        margin-top: 15vh;
+    }
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .about-hero-section {
+        background-image: url('{% static 'images/about_background.jpg' %}');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 0;
+        text-align: center;
+        color: white;
+        animation: slideBg 10s infinite alternate;
+    }
+
+    @keyframes slideBg {
+        0% {
+            background-position: center center;
+        }
+        100% {
+            background-position: center bottom;
+        }
+    }
+
+    .title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+        font-size: 1.75rem;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .mmm {
+        display: flex;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        background-color: white;
+        margin-top: 50px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .text-muted {
+        color: #6c757d;
+        font-size: 1.1rem;
+    }
+
+    /* Value cards styling */
+    .values-section {
+        margin-top: 50px;
+    }
+    .mmm{
+        margin-left: -70px;
+        width: 70vw;
+        justify-content: space-between;
+        .ccc{
+            margin-left: 30px;
+        }
+        img{
+            margin-right: 30px;
+            width: 100%;
+        }
+    }
+    .value-card {
+        
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .text-center {
+        margin: 50px 10px;
+    }
+    .value-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .value-icon {
+        width: 80px;
+        margin-bottom: 20px;
+    }
+
+    .value-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    /* Team section styling */
+    .team-section {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .team-cards {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .team-card {
+        flex: 1;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: 0 30px;
+        text-align: center;
+    }
+
+    .team-photo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .team-name {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .team-role {
+        font-size: 1.1rem;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+        .team-cards {
+            flex-direction: column;
+        }
+
+        .team-card {
+            margin-bottom: 30px;
+        }
+    }
+
+    /* Animate.css effects */
+    .animate__animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+    }
+
+    .animate__fadeInDown {
+        animation-name: fadeInDown;
+    }
+
+    .animate__fadeInUp {
+        animation-name: fadeInUp;
+    }
+
+    .animate__fadeInLeft {
+        animation-name: fadeInLeft;
+    }
+
+    .animate__fadeInRight {
+        animation-name: fadeInRight;
+    }
+
+    .animate__zoomIn {
+        animation-name: zoomIn;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translate3d(0, -100%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 100%, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes fadeInLeft {
+        from {
+            opacity: 0;
+            transform: translate3d(-100%, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes fadeInRight {
+        from {
+            opacity: 0;
+            transform: translate3d(100%, 0, 0);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale3d(0.3, 0.3, 0.3);
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+</style>
+
 {% endblock %}

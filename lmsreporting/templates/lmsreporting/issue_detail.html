@@ -1,23 +1,131 @@
 {% extends "lmsreporting/base.html" %}
 {% block content %}
-    <h1>IT Issues Reported</h1>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
 
-    <article class="media content-section">
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'lmsreporting:user-issues' object.author.username %}">{{ object.author }}</a>
-                <small class="text-muted">{{ object.date_submitted }}</small>
-            </div>
-            <h2 class="article-title">{{ object.type    }} Issue in Room {{object.room}}</h2>
-            <p class="article-content">{{ object.details }}</p>
+    h1 {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 2.5rem;
+        color: #007bff;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        animation: fadeInDown 1s ease-in-out;
+    }
 
-                {% if object.author == user %}
+    .content-section {
+        margin: 15vh auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        width: 90%;
+        max-width: 800px;
+        animation: fadeInUp 1s ease-in-out;
+    }
 
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'lmsreporting:issue-update' object.id %}">Update</a>
+    .article-metadata {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'lmsreporting:issue-delete' object.id %}">Delete</a>
+    .article-metadata a {
+        color: #007bff;
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-                {% endif %}
-            </div>
-        </article>
+    .article-metadata a:hover {
+        text-decoration: underline;
+    }
+
+    .article-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #333;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-content {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<h1>IT Issues Reported</h1>
+
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{% url 'lmsreporting:user-issues' object.author.username %}">{{ object.author }}</a>
+            <small class="text-muted">{{ object.date_submitted }}</small>
+        </div>
+        <h2 class="article-title">{{ object.type }} Issue in Room {{object.room}}</h2>
+        <p class="article-content">{{ object.details }}</p>
+
+        {% if object.author == user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'lmsreporting:issue-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'lmsreporting:issue-delete' object.id %}">Delete</a>
+        {% endif %}
+    </div>
+</article>
 {% endblock content %}
