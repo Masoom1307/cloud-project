@@ -30,7 +30,7 @@
                     {% if request.user in module.registered_students.all %}
                         <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-secondary">Unregister</a>
                     {% else %}
-                        <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-primary">Register</a>
+                        <a class="custom-btn custom-btn-primary">Register</a>
                     {% endif %}
                 </div>
             </div>
