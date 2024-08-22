@@ -3,35 +3,31 @@
 
 {% block content %}
 
-<div class="content-section"> 
+<div style="padding: 20px; background-color: #f0f0f0; border-radius: 10px; width: 80%; margin: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"> 
 
-  <div class="media"> 
+  <div style="display: flex; align-items: center; margin-bottom: 20px;"> 
 
-   <p><img class="rounded-circle account-img" src="{{user.profile.image.url}}"></p> 
+    <img src="{{user.profile.image.url}}" alt="Profile Image" style="border-radius: 50%; width: 100px; height: 100px; margin-right: 20px;"> 
 
-    <div class="media-body"> 
-
-      <h2 class="account-heading">{{user.profile}}</h2> 
-
-      <p class="text-secondary">{{user.username}}</p> 
-
-      <p class="text-secondary">{{user.email}}</p> 
-
+    <div> 
+      <h2 style="font-size: 1.8rem; color: #333; margin: 0;">{{user.profile}}</h2> 
+      <p style="color: #777; margin: 5px 0;">Username: {{user.username}}</p> 
+      <p style="color: #777; margin: 5px 0;">Email: {{user.email}}</p> 
     </div> 
 
   </div> 
 
-  <form method="POST" enctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data" style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
     {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Student IT Services - Profile Details</legend>
+    <fieldset style="border: none; padding: 0;">
+        <legend style="font-size: 1.4rem; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Student IT Services - Profile Details</legend>
         {{ u_form | crispy }} 
         {{ p_form | crispy }} 
     </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Update</button>
+    <div style="text-align: right;">
+        <button type="submit" style="padding: 10px 20px; font-size: 1rem; color: #fff; background-color: #17a2b8; border: none; border-radius: 5px; cursor: pointer;">Update</button>
     </div>
-</form>
+  </form>
 
 </div> 
 
