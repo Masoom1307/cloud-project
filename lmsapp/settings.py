@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['lmsreporting.azurewebsites.net', 'your-custom-domain.com']  # Add your Azure domain and any custom domains
+ALLOWED_HOSTS = ["*"]  # Add your Azure domain and any custom domains
 
 # Application definition
 INSTALLED_APPS = [
