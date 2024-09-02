@@ -26,14 +26,14 @@ class Module(models.Model):
         ('Closed', 'Closed'),
     ]
 
-    registered_students = models.ManyToManyField(Student, related_name='registered_modules', blank=True)
     title = models.CharField(max_length=100)
-    code = models.CharField(max_length=10, default='TBD')  
-    credit = models.PositiveIntegerField()
-    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Core')
+    code = models.CharField(max_length=10)
+    credit = models.IntegerField()
+    category = models.CharField(max_length=50)
+    availability = models.BooleanField(default=True)
     description = models.TextField()
-    availability = models.CharField(max_length=10, choices=AVAILABILITY_CHOICES, default='Open')
-    allowed_courses = models.ManyToManyField('Course', related_name='modules')
+    allowed_courses = models.ManyToManyField('Course')
+    registered_students = models.ManyToManyField(User, related_name='registered_modules', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

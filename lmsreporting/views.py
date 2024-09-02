@@ -31,6 +31,24 @@ def contact_submit(request):
         return redirect('lmsreporting:contact')
     return redirect('lmsreporting:contact')
 
+def unregister_module(request, module_id):
+    module = get_object_or_404(Module, id=module_id)
+    if request.user in module.registered_students.all():
+        module.registered_students.remove(request.user)
+        messages.success(request, 'Successfully unregistered from the module.')
+    else:
+        messages.warning(request, 'You are not registered for this module.')
+    return redirect('lmsreporting:modules')
+
+def register_module(request, module_id):
+    module = get_object_or_404(Module, id=module_id)
+    if request.user in module.registered_students.all():
+        messages.warning(request, 'You are already registered for this module.')
+    else:
+        module.registered_students.add(request.user)
+        messages.success(request, 'Successfully registered for the module.')
+    return redirect('lmsreporting:modules')
+
 # View for issue detail
 def issue_detail_view(request, pk):
     issue = get_object_or_404(Issue, pk=pk)

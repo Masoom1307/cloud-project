@@ -1,3 +1,5 @@
+# admin.py
+
 from django.contrib import admin
 from .models import Issue, Module, Course
 
@@ -11,8 +13,8 @@ class IssueAdmin(admin.ModelAdmin):
 
 # Custom admin for the Module model
 class ModuleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'code', 'credit', 'category', 'availability', 'created_at')
-    list_filter = ('category', 'availability', 'created_at')
+    list_display = ('title', 'code', 'credit', 'category', 'availability')
+    list_filter = ('category', 'availability')
     search_fields = ('title', 'code', 'description')
     filter_horizontal = ('allowed_courses',)
     ordering = ('title',)

@@ -28,10 +28,10 @@
                         {% endfor %}
                     </p>
                     {% if request.user in module.registered_students.all %}
-                        <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-secondary">Unregister</a>
-                    {% else %}
-                        <a class="custom-btn custom-btn-primary">Register</a>
-                    {% endif %}
+                    <a href="{% url 'lmsreporting:module-unregister' module.pk %}" class="custom-btn custom-btn-secondary">Unregister</a>
+                {% else %}
+                    <a href="{% url 'lmsreporting:module-register' module.pk %}" class="custom-btn custom-btn-primary">Register</a>
+                {% endif %}
                 </div>
             </div>
         </div>
