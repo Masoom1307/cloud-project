@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'massoom'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_ED526C9D9B7F4B6D980FEF245B2064C8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DF09E4D8C9464F86BA9AF82EA33B5D00 }}
